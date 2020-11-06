@@ -1,5 +1,6 @@
 import { GetServerSideProps } from 'next';
 import { useEffect, useState } from 'react';
+import math from '../lib/math';
 import {Title} from '../styles/pages/Home';
 
 interface IProduct {
@@ -12,6 +13,12 @@ interface HomeProducts {
 }
 
 export default function Home({recommendedProducts}: HomeProducts) {
+
+  async function handleSum() {
+    const {sum} = (await import('../lib/math')).default;
+
+    alert(sum(3, 5))
+  }
 
   return (
     <div>
@@ -28,6 +35,7 @@ export default function Home({recommendedProducts}: HomeProducts) {
           ))}
         </ul>
       </section>
+      <button onClick={handleSum} >Sum!</button>
     </div>
   )
 }
